@@ -39,7 +39,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{ route('home') }}" class="site_title"><i class="fa fa-paw"></i> <span>Desa Bulu</span></a>
+              <a href="{{ route('home') }}" class="site_title"><i class="fa fa-paw"></i> <span>Dusun Bulu</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -61,8 +61,8 @@
               <div class="menu_section">
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
-                  <li><a href="#"><i class="fa fa-home"></i> Dashboard </a></li>
-                  <li><a href="#"><i class="fa fa-edit"></i> Manajemen Staff </a></li>
+                  <li><a href="{{ route('home') }}"><i class="fa fa-home"></i> Dashboard </a></li>
+                  <li><a href="{{ route('user.index') }}"><i class="fa fa-users"></i> Manajemen Admin & Staff </a></li>
                 </ul>
               </div>
             </div>
@@ -103,7 +103,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            &copy; 2020 KKN UNY - Desa Bulu
+            &copy; 2020 KKN UNY - Dusun Bulu
           </div>
           <div class="clearfix"></div>
         </footer>

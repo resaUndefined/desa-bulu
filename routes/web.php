@@ -30,11 +30,9 @@ Route::group(['middleware' => ['web', 'auth']], function(){
 
 Route::group(['middleware' => ['web', 'auth', 'isAdmin']], function(){
 	Route::get('/admin-web', 'Admin\DashboardController@index')->name('admin');
-	// Route::prefix('admin')->group(function () {
-	//     Route::resource('roles', 'Admin\RoleController');
-	//     Route::resource('jabatan', 'Admin\JabatanController');
-	//     Route::resource('users', 'Admin\UserController');
-	// });
+	Route::prefix('admin-web')->group(function () {
+	    Route::resource('user', 'Admin\UserController');
+	});
 });
 Route::group(['middleware' => ['web', 'auth', 'isStaff']], function(){
 	Route::get('/home', 'HomeController@index')->name('home');
