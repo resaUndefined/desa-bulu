@@ -1,11 +1,11 @@
 @font-face {
    font-family: "Oswald Regular";
-   src: url('../fonts/oswald.regular.ttf');
+   src: url('/admin/auth/fonts/oswald.regular.ttf');
 }
 
 @font-face {
    font-family: "Oswald Light";
-   src: url('../fonts/oswald.light.ttf');
+   src: url('/admin/auth/fonts/oswald.light.ttf');
 }
 
 body {

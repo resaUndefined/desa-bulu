@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="{{ URL::asset('client/css/main.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('client/css/fontawesome-all.min.css') }}" />
 		<link rel="stylesheet" href="{{ URL::asset('client/css/style.css') }}" />
-		{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> --}}
 		<noscript><link rel="stylesheet" href="{{ URL::asset('client/css/noscript.css') }}" /></noscript>
 	</head>
 	<body class="homepage is-preload">
@@ -29,7 +28,11 @@
 					<li><a href="#">Pojok Bulu</a></li>
 					<li><a href="#">Galery</a></li>
 					<li><a href="#cariPost" class="btn btn-success"><i class="fas fa-search"></i> Search</a></li>
-					<li><a href="#"><i class="fas fa-user"></i> Login</a></li>
+					@if (Auth::check())
+						<li><a href="{{ route('home') }}"><i class="fas fa-user"></i> Dashboard</a></li>
+					@else
+						<li><a href="{{ route('login') }}"><i class="fas fa-user"></i> Login</a></li>
+					@endif
 				</ul>
 			</nav>
 			<br><br><br>
