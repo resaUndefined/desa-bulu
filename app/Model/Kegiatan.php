@@ -8,10 +8,6 @@ class Kegiatan extends Model
 {
     protected $table = 'kegiatan';
     protected $fillable = [
-        'nama_kegiatan', 
-        'deskripsi', 
-        'tempat',
-        'waktu',
-        'keterangan_tambahan',
+        'nama_kegiatan',
     ];
 }

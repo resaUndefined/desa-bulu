@@ -1,13 +1,13 @@
 @extends('staff.base')
 
-@section('title', 'Manajemen Umur Masyarakat')
+@section('title', 'Manajemen Kegiatan')
 
 @section('content')
 	<div class="right_col" role="main">
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Manajemen Umur Masyarakat <small>Dusun Bulu</small></h3>
+          <h3>Manajemen Kegiatan <small>Dusun Bulu</small></h3>
         </div>
 
         <div class="title_right">
@@ -27,7 +27,7 @@
             <div class="x_title">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <a href="{{ route('masyarakat.create') }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Umur Masyarakat</a>
+                    <a href="{{ route('kegiatan.create') }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Kegiatan</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   @if(Session::has('sukses'))
@@ -48,54 +48,44 @@
             </div>
             <div class="row">
             <div class="x_content">
-              @if (count($masyarakat) > 0)
-              <h3>Fasilitas Dusun</h3>
+              @if (count($kegiatan) > 0)
+              <h3>Kegiatan Dusun</h3>
               <table class="table table-hover">
                 <thead>
                   <tr>
                     <th class="th-table">No</th>
-                    <th class="th-table">Klasifikasi Umur</th>
-                    <th class="th-table">Laki-Laki</th>
-                    <th class="th-table">Perempuan</th>
+                    <th class="th-table">Kegiatan</th>
                     <th class="th-table">Action</th>
                   </tr>
                 </thead>
                   <tbody>
-                    @foreach ($masyarakat as $key => $m)
+                    @foreach ($kegiatan as $key => $f)
                       <tr>
-                        <th scope="row" class="col-md-1">{{ $masyarakat->firstItem() + $key }}</th>
-                        <td>{{ $m->klasifikasi_umur }}</td>
-                        <td>{{ $m->laki }}</td>
-                        <td>{{ $m->perempuan }}</td>
+                        <th scope="row" class="col-md-1">{{ $kegiatan->firstItem() + $key }}</th>
+                        <td>{{ $f->nama_kegiatan }}</td>
                         <td class="col-md-2">
-                          <a href="{{ route('masyarakat.edit', $m->id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                          <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$m->id}})" 
+                          <a href="{{ route('kegiatan.edit', $f->id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                          <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$f->id}})" 
                               data-target="#DeleteModal" class="btn btn-round btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
                         </td>
                       </tr>
                     @endforeach
-                    <tr>
-                      <th scope="row" class="col-md-1" colspan="2"></th>
-                      <td><strong>{{ $jumLaki }} jiwa</strong></td>
-                      <td><strong>{{ $jumPerempuan }} jiwa </strong></td>
-                      <td class="col-md-2"><strong>Total : {{ $total }} jiwa </strong></td>
-                    </tr>
                   </tbody>
               </table>
               @else
-              <h3 style="text-align: center;vertical-align: middle;">Data Klasifikasi Umur Masyarakat belum ditambahkan</h3>
+              <h3 style="text-align: center;vertical-align: middle;">Data Kegiatan Dusun belum ditambahkan</h3>
               @endif
               {{-- pagination --}}
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div>Menampilkan {{ $masyarakat->firstItem() }} sampai {{ $masyarakat->lastItem() }} dari total {{ $masyarakat->total() }} Klasifikasi Umur Masyarakat</div>
+                  <div>Menampilkan {{ $kegiatan->firstItem() }} sampai {{ $kegiatan->lastItem() }} dari total {{ $kegiatan->total() }} Kegiatan Dusun</div>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 pull-right">
                   <div style="margin-top: -25px; margin-bottom: -15px;" class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                      {{ $masyarakat->links() }}
+                      {{ $kegiatan->links() }}
                     </div>
                 </div>
               </div>
@@ -119,7 +109,7 @@
                    <div class="modal-body">
                        {{ csrf_field() }}
                        {{ method_field('DELETE') }}
-                       <p class="text-center">Apa kamu yakin ingin menghapus klasifikasi umur ini ?</p>
+                       <p class="text-center">Apa kamu yakin ingin menghapus kegiatan ini ?</p>
                    </div>
                    <div class="modal-footer">
                        <center>
@@ -134,7 +124,7 @@
         <script type="text/javascript">
           function deleteData(id){
              var id = id;
-             var url = '{{ route("masyarakat.destroy", ":id") }}';
+             var url = '{{ route("kegiatan.destroy", ":id") }}';
              url = url.replace(':id', id);
              $("#deleteForm").attr('action', url);
            }

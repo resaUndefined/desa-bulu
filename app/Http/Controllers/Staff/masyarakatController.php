@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 
 
-class masyarakatController extends Controller
+class MasyarakatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class masyarakatController extends Controller
      */
     public function index()
     {
-        $masyarakat = Masyarakat::paginate();
+        $masyarakat = Masyarakat::paginate(10);
         $jumLaki = null;
         $jumPerempuan = null;
         $total = null;

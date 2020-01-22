@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('id','!=',Auth::id())->paginate();
+        $users = User::where('id','!=',Auth::id())->paginate(10);
         return view('admin.user.index', [
             'users' => $users,
         ]);

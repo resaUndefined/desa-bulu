@@ -75,6 +75,21 @@
               @else
               <h3 style="text-align: center;vertical-align: middle;">Data Fasilitas Dusun belum ditambahkan</h3>
               @endif
+              {{-- pagination --}}
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div>Menampilkan {{ $fasilitas->firstItem() }} sampai {{ $fasilitas->lastItem() }} dari total {{ $fasilitas->total() }} Fasilitas Dusun</div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 pull-right">
+                  <div style="margin-top: -25px; margin-bottom: -15px;" class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                      {{ $fasilitas->links() }}
+                    </div>
+                </div>
+              </div>
+              {{-- end pagination --}}
             </div>
             </div>
           </div>

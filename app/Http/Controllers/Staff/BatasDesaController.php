@@ -17,7 +17,7 @@ class BatasDesaController extends Controller
      */
     public function index()
     {
-        $batasDesa = Batasdesa::paginate();
+        $batasDesa = Batasdesa::paginate(10);
 
         return view('staff.batas-desa.index', [
             'batasDesa' => $batasDesa,
