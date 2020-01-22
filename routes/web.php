@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web', 'auth', 'isAdmin']], function(){
 });
 Route::group(['middleware' => ['web', 'auth', 'isStaff']], function(){
 	Route::get('/home', 'HomeController@index')->name('home');
-	// Route::get('/staff', 'Staff\DashboardController@index')->name('staff');
+	Route::get('/staff', 'Staff\DashboardController@index')->name('staff');
 	// Route::prefix('staff')->group(function () {
 	// 	Route::get('profile', 'Staff\DashboardController@profile')->name('staff.profile');
 	// 	Route::put('profile', 'Staff\DashboardController@profile_update')->name('staff.profile_update');

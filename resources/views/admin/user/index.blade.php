@@ -46,6 +46,7 @@
               </div>
               <div class="clearfix"></div>
             </div>
+            <div class="row">
             <div class="x_content">
               <table class="table table-hover">
                 <thead>
@@ -99,7 +100,7 @@
                     </div>
                 </div>
               </div>
-
+            </div>
             </div>
           </div>
         </div>

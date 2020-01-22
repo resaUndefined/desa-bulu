@@ -63,8 +63,16 @@
               <div class="menu_section">
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
-                  <li><a href="#"><i class="fa fa-home"></i> Dashboard </a></li>
-                  <li><a href="#"><i class="fa fa-edit"></i> Manajemen Staff </a></li>
+                  <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Batas Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Fasilitas Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Masyarakat Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> RT Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Karang Taruna Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Kegiatan Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Kegiatan Dusun Bulu</a></li>
+                  <li><a href="#"><i class="fa fa-edit"></i> Manajemen Postingan</a></li>
                 </ul>
               </div>
 
