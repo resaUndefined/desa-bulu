@@ -63,11 +63,11 @@
               <div class="menu_section">
                 <h3>Menu</h3>
                 <ul class="nav side-menu">
-                  <li><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                  <li><a href="{{ route('home') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                   <li class=""><a><i class="fa fa-building"></i> Dusun Bulu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: none;">
                       <li><a href="{{ route('dusun.index') }}"><i class="fa fa-building"></i> Manajemen Dusun</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-shield"></i> Batas Dusun</a></li>
+                      <li><a href="{{ route('batas-dusun.index') }}"><i class="fa fa-shield"></i> Batas Dusun</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-file"></i> Fasilitas Dusun</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-tasks"></i> Kegiatan Dusun</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-users"></i> Manajemen RT</a></li>
