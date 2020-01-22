@@ -71,7 +71,7 @@
                       <li><a href="{{ route('fasilitas.index') }}"><i class="fa fa-file"></i> Fasilitas Dusun</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-tasks"></i> Kegiatan Dusun</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-users"></i> Manajemen RT</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-users"></i> Masyarakat</a></li>
+                      <li><a href="{{ route('masyarakat.index') }}"><i class="fa fa-users"></i> Masyarakat</a></li>
                     </ul>
                   </li>
                   <li class=""><a><i class="fa fa-tasks"></i> Karang Taruna <span class="fa fa-chevron-down"></span></a>
@@ -83,7 +83,6 @@
                   </li>
                   <li class=""><a><i class="fa fa-desktop"></i> Manajemen Postingan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: none;">
-                      <li><a href="general_elements.html"><i class="fa fa-file"></i> Kategori Post</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-book"></i> Artikel</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-map-marker"></i> Destinasi</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-calendar"></i> Event</a></li>
