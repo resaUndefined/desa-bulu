@@ -76,9 +76,9 @@
                   </li>
                   <li class=""><a><i class="fa fa-tasks"></i> Karang Taruna <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: none;">
-                      <li><a href="general_elements.html"><i class="fa fa-sitemap"></i> Karang Taruna 1</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-sitemap"></i> Karang Taruna 2</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-sitemap"></i> Karang Taruna 3</a></li>
+                      <li><a href="{{ route('karta-bule.index') }}"><i class="fa fa-sitemap"></i> KARTA BULE</a></li>
+                      <li><a href="general_elements.html"><i class="fa fa-sitemap"></i> Karang taruna BuKid</a></li>
+                      <li><a href="general_elements.html"><i class="fa fa-sitemap"></i> Karang Taruna Rembulan</a></li>
                     </ul>
                   </li>
                   <li class=""><a><i class="fa fa-desktop"></i> Manajemen Postingan <span class="fa fa-chevron-down"></span></a>
