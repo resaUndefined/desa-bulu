@@ -9,7 +9,7 @@ use Validator;
 use DB;
 
 
-class KartaBuleController extends Controller
+class BukidController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +18,14 @@ class KartaBuleController extends Controller
      */
     public function index()
     {
-        $kartaBule = DB::table('karangtaruna')
+        $bukid = DB::table('karangtaruna')
         ->join('detailkarang', 'karangtaruna.id', '=', 'detailkarang.karangtaruna_id')
-        ->where('karangtaruna.id','=',1)
+        ->where('karangtaruna.id','=',2)
         ->select('karangtaruna.id','karangtaruna.karang_taruna','detailkarang.id as detail_id', 'detailkarang.jabatan', 'detailkarang.pejabat')
         ->paginate(10);
         
-        return view('staff.karang-taruna1.index', [
-            'kartaBule' => $kartaBule,
+        return view('staff.bukid.index', [
+            'bukid' => $bukid,
         ]);
     }
 
@@ -36,7 +36,7 @@ class KartaBuleController extends Controller
      */
     public function create()
     {
-        return view('staff.karang-taruna1.create');
+        return view('staff.bukid.create');
     }
 
     /**
@@ -62,18 +62,18 @@ class KartaBuleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else{
-            $id = 1;
-            $kartaBule = new Detailkarang();
-            $kartaBule->jabatan = $request->jabatan;
-            $kartaBule->pejabat = $request->pejabat;
-            $kartaBule->karangtaruna_id = $id;
-            $kartaBuleSave = $kartaBule->save();
-            if ($kartaBuleSave) {
+            $id = 2;
+            $bukid = new Detailkarang();
+            $bukid->jabatan = $request->jabatan;
+            $bukid->pejabat = $request->pejabat;
+            $bukid->karangtaruna_id = $id;
+            $bukidSave = $bukid->save();
+            if ($bukidSave) {
                 $pesan = $request->jabatan.' berhasil ditambahkan';
-                return redirect()->route('karta-bule.index')->with('sukses', $pesan);
+                return redirect()->route('bukid.index')->with('sukses', $pesan);
             }
             $pesan = $request->jabatan.' gagal ditambahkan';
-            return redirect()->route('karta-bule.index')->with('gagal', $pesan);
+            return redirect()->route('bukid.index')->with('gagal', $pesan);
         }
     }
 
@@ -96,10 +96,10 @@ class KartaBuleController extends Controller
      */
     public function edit($id)
     {
-        $kartaBule = Detailkarang::where('id',$id)->first();
+        $bukid = Detailkarang::where('id',$id)->first();
 
-        return view('staff.karang-taruna1.edit', [
-            'kartaBule' => $kartaBule,
+        return view('staff.bukid.edit', [
+            'bukid' => $bukid,
         ]);
     }
 
@@ -127,16 +127,16 @@ class KartaBuleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else{
-            $kartaBule = Detailkarang::where('id',$id)->first();
-            $kartaBule->jabatan = $request->jabatan;
-            $kartaBule->pejabat = $request->pejabat;
-            $kartaBuleSave = $kartaBule->save();
-            if ($kartaBuleSave) {
+            $bukid = Detailkarang::where('id',$id)->first();
+            $bukid->jabatan = $request->jabatan;
+            $bukid->pejabat = $request->pejabat;
+            $bukidSave = $bukid->save();
+            if ($bukidSave) {
                 $pesan = $request->jabatan.' berhasil diupdate';
-                return redirect()->route('karta-bule.index')->with('sukses', $pesan);
+                return redirect()->route('bukid.index')->with('sukses', $pesan);
             }
             $pesan = $request->jabatan.' gagal diupdate';
-            return redirect()->route('karta-bule.index')->with('gagal', $pesan);
+            return redirect()->route('bukid.index')->with('gagal', $pesan);
         }
     }
 
@@ -148,9 +148,9 @@ class KartaBuleController extends Controller
      */
     public function destroy($id)
     {
-        $kartaBule = Detailkarang::where('id',$id)->first();
-        $pesanSukses = $kartaBule->jabatan.' dan '.$kartaBule->pejabat.' berhasil dihapus';
-        $kartaBule->delete();
-        return redirect()->route('karta-bule.index')->with('sukses', $pesanSukses);
+        $bukid = Detailkarang::where('id',$id)->first();
+        $pesanSukses = $bukid->jabatan.' dan '.$bukid->pejabat.' berhasil dihapus';
+        $bukid->delete();
+        return redirect()->route('bukid.index')->with('sukses', $pesanSukses);
     }
 }

@@ -45,6 +45,7 @@ Route::group(['middleware' => ['web', 'auth', 'isStaff']], function(){
 		Route::resource('kegiatan', 'Staff\KegiatanController');
 		Route::resource('rt', 'Staff\RtController');
 		Route::resource('karta-bule', 'Staff\KartaBuleController');
+		Route::resource('bukid', 'Staff\BukidController');
 		// Route::get('profile', 'Staff\DashboardController@profile')->name('staff.profile');
 		// Route::put('profile', 'Staff\DashboardController@profile_update')->name('staff.profile_update');
 		// Route::resource('pertemuan', 'Staff\PertemuanController');
