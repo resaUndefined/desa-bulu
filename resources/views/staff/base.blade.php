@@ -70,7 +70,7 @@
                       <li><a href="{{ route('batas-dusun.index') }}"><i class="fa fa-shield"></i> Batas Dusun</a></li>
                       <li><a href="{{ route('fasilitas.index') }}"><i class="fa fa-file"></i> Fasilitas Dusun</a></li>
                       <li><a href="{{ route('kegiatan.index') }}"><i class="fa fa-tasks"></i> Kegiatan Dusun</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-users"></i> Manajemen RT</a></li>
+                      <li><a href="{{ route('rt.index') }}"><i class="fa fa-users"></i> Manajemen RT</a></li>
                       <li><a href="{{ route('masyarakat.index') }}"><i class="fa fa-users"></i> Masyarakat</a></li>
                     </ul>
                   </li>
