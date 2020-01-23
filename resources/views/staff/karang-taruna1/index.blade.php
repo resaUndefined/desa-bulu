@@ -7,7 +7,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Manajemen KARTA BULE <small>Dusun Bulu</small></h3>
+          <h4>{{ $karangTaruna->karang_taruna }} <small>Dusun Bulu</small></h4>
         </div>
 
         <div class="title_right">
@@ -49,7 +49,7 @@
             <div class="row">
             <div class="x_content">
               @if (count($kartaBule) > 0)
-              <h3>Data Karang Taruna Bulu Lor Wetan</h3>
+              <h3>Data <strong>{{ $karangTaruna->karang_taruna }}</strong></h3>
               <table class="table table-hover">
                 <thead>
                   <tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Detailkarang;
+use App\Model\Karangtaruna;
 use Validator;
 use DB;
 
@@ -23,9 +24,11 @@ class BukidController extends Controller
         ->where('karangtaruna.id','=',2)
         ->select('karangtaruna.id','karangtaruna.karang_taruna','detailkarang.id as detail_id', 'detailkarang.jabatan', 'detailkarang.pejabat')
         ->paginate(10);
-        
+        $karangTaruna = Karangtaruna::where('id',2)->first();
+
         return view('staff.bukid.index', [
             'bukid' => $bukid,
+            'karangTaruna' => $karangTaruna,
         ]);
     }
 
