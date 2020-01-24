@@ -89,7 +89,7 @@
                       <li><a href="general_elements.html"><i class="fa fa-building"></i> Pojok Bulu</a></li>
                     </ul>
                   </li>
-                  <li><a href="general_elements.html"><i class="fa fa-image"></i> Galery</a></li>
+                  <li><a href="{{ route('galeri.index') }}"><i class="fa fa-image"></i> Galery</a></li>
                 </ul>
               </div>
 
