@@ -50,7 +50,7 @@
             <div class="x_content">
               @if (count($kegiatan) > 0)
               <h3>Kegiatan Dusun</h3>
-              <table class="table table-hover">
+              <table class="table table-hover table-responsive">
                 <thead>
                   <tr>
                     <th class="th-table">No</th>

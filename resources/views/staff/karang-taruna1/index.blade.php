@@ -50,7 +50,7 @@
             <div class="x_content">
               @if (count($kartaBule) > 0)
               <h3>Data <strong>{{ $karangTaruna->karang_taruna }}</strong></h3>
-              <table class="table table-hover">
+              <table class="table table-hover table-responsive">
                 <thead>
                   <tr>
                     <th class="th-table">No</th>

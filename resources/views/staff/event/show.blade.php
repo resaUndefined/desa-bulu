@@ -1,13 +1,13 @@
 @extends('staff.base')
 
-@section('title', 'Detail Artikel')
+@section('title', 'Detail Event')
 
 @section('content')
 	<div class="right_col" role="main">
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h4>Detail Artikel <small>Dusun Bulu</small></h4>
+          <h4>Detail Event <small>Dusun Bulu</small></h4>
         </div>
 
         <div class="title_right">
@@ -29,35 +29,35 @@
             </div>
             <div class="row">
             <div class="x_content">
-              @if (!is_null($artikel))
-              <h3>Data Detail Artikel</h3>
+              @if (!is_null($event))
+              <h3>Data Detail Event</h3>
               <table class="table table-hover table-responsive">
                   <tr>
-                    <th>Judul</th>
-                    <td>: {{ $artikel->judul }}</td>
+                    <th>Event</th>
+                    <td>: {{ $event->judul }}</td>
                   </tr>
                   <tr>
                     <th>Author</th>
-                    <td>: {{ $artikel->author }}</td>
+                    <td>: {{ $event->author }}</td>
                   </tr>
                   <tr>
                     <th>Published</th>
-                    <td>: {{ date('d F Y', strtotime($artikel->created_at)) }}</td>
-                  </tr>
-                  <tr>
-                    <th>Gambar</th>
-                    <td>: {!! $artikel->isi !!}</td>
+                    <td>: {{ date('d F Y', strtotime($event->created_at)) }}</td>
                   </tr>
                   <tr>
                     <th>Deskripsi</th>
-                    <td>: <img src="{{ url('/images/'.$artikel->gambar) }}" style="width: 240px;height: 150px;"></td>
+                    <td>: {!! $event->isi !!}</td>
+                  </tr>
+                  <tr>
+                    <th>Gambar</th>
+                    <td>: <img src="{{ url('/images/'.$event->gambar) }}" style="width: 240px;height: 150px;"></td>
                   </tr>
               </table>
               <div class="col-lg-12 col-md-12 col-sm-12">
-                <a href="{{ route('artikel.index') }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Kembali</a>
+                <a href="{{ route('event.index') }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Kembali</a>
               </div>
               @else
-              <h3 style="text-align: center;vertical-align: middle;">Data Artikel belum ditambahkan</h3>
+              <h3 style="text-align: center;vertical-align: middle;">Data Event belum ditambahkan</h3>
               @endif
             </div>
             </div>

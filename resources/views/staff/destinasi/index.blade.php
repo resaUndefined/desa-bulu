@@ -1,13 +1,13 @@
 @extends('staff.base')
 
-@section('title', 'Karang Taruna Bukid')
+@section('title', 'Manajemen destinasi')
 
 @section('content')
 	<div class="right_col" role="main">
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h4>{{ $karangTaruna->karang_taruna }} <small>Dusun Bulu</small></h4>
+          <h4>Manajemen Destinasi <small>Dusun Bulu</small></h4>
         </div>
 
         <div class="title_right">
@@ -27,7 +27,7 @@
             <div class="x_title">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <a href="{{ route('bukid.create') }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Karang Taruna Bukid</a>
+                    <a href="{{ route('destinasi.create') }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data Destinasi</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   @if(Session::has('sukses'))
@@ -48,26 +48,27 @@
             </div>
             <div class="row">
             <div class="x_content">
-              @if (count($bukid) > 0)
-              <h3>Data <strong>{{ $karangTaruna->karang_taruna }}</strong></h3>
+              @if (count($destinasi) > 0)
+              <h3>Data destinasi</h3>
               <table class="table table-hover table-responsive">
                 <thead>
                   <tr>
                     <th class="th-table">No</th>
-                    <th class="th-table">Jabatan</th>
-                    <th class="th-table">Nama Pejabat</th>
+                    <th class="th-table">Author</th>
+                    <th class="th-table">Destinasi</th>
                     <th class="th-table">Action</th>
                   </tr>
                 </thead>
                   <tbody>
-                    @foreach ($bukid as $key => $m)
+                    @foreach ($destinasi as $key => $m)
                       <tr>
-                        <th scope="row" class="col-md-1">{{ $bukid->firstItem() + $key }}</th>
-                        <td>{{ $m->jabatan }}</td>
-                        <td>{{ $m->pejabat }}</td>
-                        <td class="col-md-2">
-                          <a href="{{ route('bukid.edit', $m->detail_id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                          <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$m->detail_id}})" 
+                        <th scope="row" class="col-md-1">{{ $destinasi->firstItem() + $key }}</th>
+                        <td>{{ $m->author }}</td>
+                        <td>{{ $m->judul }}</td>
+                        <td class="col-md-3">
+                          <a href="{{ route('destinasi.show', $m->id) }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-eye"></i> View</a>
+                          <a href="{{ route('destinasi.edit', $m->id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                          <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$m->id}})" 
                               data-target="#DeleteModal" class="btn btn-round btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
                         </td>
                       </tr>
@@ -75,19 +76,19 @@
                   </tbody>
               </table>
               @else
-              <h3 style="text-align: center;vertical-align: middle;">Data Karang Taruna Bulu Kidul belum ditambahkan</h3>
+              <h3 style="text-align: center;vertical-align: middle;">Data destinasi belum ditambahkan</h3>
               @endif
               {{-- pagination --}}
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div>Menampilkan {{ $bukid->firstItem() }} sampai {{ $bukid->lastItem() }} dari total {{ $bukid->total() }} Anggota</div>
+                  <div>Menampilkan {{ $destinasi->firstItem() }} sampai {{ $destinasi->lastItem() }} dari total {{ $destinasi->total() }} destinasi</div>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 pull-right">
                   <div style="margin-top: -25px; margin-bottom: -15px;" class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                      {{ $bukid->links() }}
+                      {{ $destinasi->links() }}
                     </div>
                 </div>
               </div>
@@ -111,7 +112,7 @@
                    <div class="modal-body">
                        {{ csrf_field() }}
                        {{ method_field('DELETE') }}
-                       <p class="text-center">Apa kamu yakin ingin menghapus data ini ?</p>
+                       <p class="text-center">Apa kamu yakin ingin menghapus destinasi ini ?</p>
                    </div>
                    <div class="modal-footer">
                        <center>
@@ -126,7 +127,7 @@
         <script type="text/javascript">
           function deleteData(id){
              var id = id;
-             var url = '{{ route("bukid.destroy", ":id") }}';
+             var url = '{{ route("destinasi.destroy", ":id") }}';
              url = url.replace(':id', id);
              $("#deleteForm").attr('action', url);
            }

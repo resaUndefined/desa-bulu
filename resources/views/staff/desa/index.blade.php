@@ -52,7 +52,7 @@
             <div class="x_content">
               @if (!is_null($desa))
               <h3>Data Dusun</h3>
-              <table class="table table-hover">
+              <table class="table table-hover table-responsive">
                   <tr>
                     <th>Desa</th>
                     <td>: {{ $desa->desa }}</td>

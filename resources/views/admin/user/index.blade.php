@@ -48,7 +48,7 @@
             </div>
             <div class="row">
             <div class="x_content">
-              <table class="table table-hover">
+              <table class="table table-hover table-responsive">
                 <thead>
                   <tr>
                     <th class="th-table">No</th>

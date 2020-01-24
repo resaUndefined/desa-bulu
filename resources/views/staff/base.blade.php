@@ -83,10 +83,9 @@
                   </li>
                   <li class=""><a><i class="fa fa-desktop"></i> Manajemen Postingan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: none;">
-                      <li><a href="{{ route('artikel.index') }}"><i class="fa fa-book"></i> Artikel</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-map-marker"></i> Destinasi</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-calendar"></i> Event</a></li>
-                      <li><a href="general_elements.html"><i class="fa fa-building"></i> Pojok Bulu</a></li>
+                      <li><a href="{{ route('artikel.index') }}"><i class="fa fa-book"></i> Artikel/Pojok Bulu</a></li>
+                      <li><a href="{{ route('destinasi.index') }}"><i class="fa fa-map-marker"></i> Destinasi</a></li>
+                      <li><a href="{{ route('event.index') }}"><i class="fa fa-calendar"></i> Event</a></li>
                     </ul>
                   </li>
                   <li><a href="{{ route('galeri.index') }}"><i class="fa fa-image"></i> Galery</a></li>
