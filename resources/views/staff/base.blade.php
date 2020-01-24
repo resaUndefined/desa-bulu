@@ -83,7 +83,7 @@
                   </li>
                   <li class=""><a><i class="fa fa-desktop"></i> Manajemen Postingan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: none;">
-                      <li><a href="general_elements.html"><i class="fa fa-book"></i> Artikel</a></li>
+                      <li><a href="{{ route('artikel.index') }}"><i class="fa fa-book"></i> Artikel</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-map-marker"></i> Destinasi</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-calendar"></i> Event</a></li>
                       <li><a href="general_elements.html"><i class="fa fa-building"></i> Pojok Bulu</a></li>
@@ -155,7 +155,15 @@
         <!-- /footer content -->
       </div>
     </div>
-
+    
+    <!-- tinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/q6853xnmt1tuy5hu2tbrmp01fhmjfvl2jqgdf7xuv9ptnoop/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({
+                          selector:'textarea',
+                          plugins: "advlist",
+                          advlist_bullet_styles: "square"
+                        });
+    </script>
     <!-- jQuery -->
     <script src="{{ URL::asset('admin/dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
