@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('client.base');
-});
+// Route::get('/', function () {
+//     return view('client.base');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'ClientController@index')->name('client');
 
 // Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 // Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
