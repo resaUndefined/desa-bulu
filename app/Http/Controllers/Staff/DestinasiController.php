@@ -22,12 +22,20 @@ class DestinasiController extends Controller
         $destinasi = DB::table('post')
                     ->join('users','post.author', '=', 'users.id')
                     ->where('post.kategori_id', '=', 2)
+                    ->where('post.is_slider', '=', 0)
                     ->select('post.id', 'users.name as author', 'post.judul')
                     ->orderBy('post.id', 'DESC')
                     ->paginate(5);
+        $destinasiSlider = DB::table('post')
+                    ->join('users','post.author', '=', 'users.id')
+                    ->where('post.kategori_id', '=', 2)
+                    ->where('post.is_slider', '=', 1)
+                    ->select('post.id', 'users.name as author', 'post.judul')
+                    ->first();
 
         return view('staff.destinasi.index', [
             'destinasi' => $destinasi,
+            'destinasiSlider' => $destinasiSlider,
         ]);
     }
 
@@ -53,6 +61,7 @@ class DestinasiController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -62,6 +71,8 @@ class DestinasiController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
         if ($validator->fails()) {
             return redirect()->back()
@@ -78,6 +89,17 @@ class DestinasiController extends Controller
             $destinasi->isi = $request->isi;
             $destinasi->kategori_id = 2;
             $destinasi->author = Auth::id();
+            if ($request->is_slider == 1) {
+                $destinasiSlider = Post::where([
+                    'is_slider' => 1,
+                    'kategori_id' => 2
+                ])->first();
+                if (!is_null($destinasiSlider)) {
+                    $destinasiSlider->is_slider = 0;
+                    $destinasiSlider->save();
+                }
+            }
+            $destinasi->is_slider = $request->is_slider;
             $destinasiSave = $destinasi->save();
             if ($destinasiSave) {
                 $pesan = 'Destinasi '.$request->judul.' berhasil ditambahkan';
@@ -101,7 +123,8 @@ class DestinasiController extends Controller
                     ->where('post.id', '=', $id)
                     ->select(
                         'post.id', 'users.name as author', 'post.judul',
-                        'post.isi', 'post.gambar', 'post.created_at'
+                        'post.isi', 'post.gambar', 'post.created_at',
+                        'post.is_slider'
                     )
                     ->first();
 
@@ -139,6 +162,7 @@ class DestinasiController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -148,6 +172,8 @@ class DestinasiController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
 
             if ($validator->fails()) {
@@ -167,6 +193,17 @@ class DestinasiController extends Controller
                 $destinasi->gambar = $nama_file;
                 $destinasi->judul = $request->judul;
                 $destinasi->isi = $request->isi;
+                if ($request->is_slider == 1) {
+                    $destinasiSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 2
+                    ])->first();
+                    if (!is_null($destinasiSlider)) {
+                        $destinasiSlider->is_slider = 0;
+                        $destinasiSlider->save();
+                    }
+                }
+                $destinasi->is_slider = $request->is_slider;
                 $destinasiSave = $destinasi->save();
                 if ($destinasiSave) {
                     $pesan = 'Destinasi '.$request->judul.' berhasil diupdate';
@@ -179,11 +216,14 @@ class DestinasiController extends Controller
             $validator = Validator::make($request->all(), [
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
             if ($validator->fails()) {
                 return redirect()->back()
@@ -193,6 +233,17 @@ class DestinasiController extends Controller
                 $destinasi = Post::find($id);
                 $destinasi->judul = $request->judul;
                 $destinasi->isi = $request->isi;
+                if ($request->is_slider == 1) {
+                    $destinasiSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 2
+                    ])->first();
+                    if (!is_null($destinasiSlider)) {
+                        $destinasiSlider->is_slider = 0;
+                        $destinasiSlider->save();
+                    }
+                }
+                $destinasi->is_slider = $request->is_slider;
                 $destinasiSave = $destinasi->save();
                 if ($destinasiSave) {
                     $pesan = 'Destinasi '.$request->judul.' berhasil diupdate';

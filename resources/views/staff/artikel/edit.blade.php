@@ -41,6 +41,12 @@
                   <strong>{{ $errors->first('isi') }}</strong>
                 </div>
               @endif
+              @if ($errors->has('is_slider'))
+                <div class="alert alert-warning alert-dismissible fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{{ $errors->first('is_slider') }}</strong>
+                </div>
+              @endif
               @if ($errors->has('gambar'))
                 <div class="alert alert-warning alert-dismissible fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

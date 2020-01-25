@@ -45,6 +45,16 @@
                     <td>: {{ date('d F Y', strtotime($event->created_at)) }}</td>
                   </tr>
                   <tr>
+                    <th>Slider</th>
+                    <td>: 
+                          @if ($event->is_slider == 1)
+                            <i class="fa fa-check"></i>
+                          @else
+                            <i class="fa fa-times" style="color: red;"></i>
+                          @endif
+                    </td>
+                  </tr>
+                  <tr>
                     <th>Deskripsi</th>
                     <td>: {!! $event->isi !!}</td>
                   </tr>

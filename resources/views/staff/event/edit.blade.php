@@ -47,6 +47,12 @@
                   <strong>{{ $errors->first('gambar') }}</strong>
                 </div>
               @endif
+              @if ($errors->has('is_slider'))
+                <div class="alert alert-warning alert-dismissible fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{{ $errors->first('is_slider') }}</strong>
+                </div>
+              @endif
               <form id="add-role" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ route('event.update', $event->id) }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
                   <input name="_method" type="hidden" value="PUT">
@@ -55,6 +61,20 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input type="text" id="judul" name="judul" required="required" class="form-control col-md-7 col-xs-12" value="{{ $event->judul }}">
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Slider <span class="required"></span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select class="form-control" name="is_slider">
+                        <option value="1" @if ($event->is_slider == 1)
+                          selected="" 
+                        @endif>Ya</option>
+                        <option value="0" @if ($event->is_slider == 0)
+                          selected="" 
+                        @endif>Tidak</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">

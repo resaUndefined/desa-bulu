@@ -22,12 +22,20 @@ class EventController extends Controller
         $event = DB::table('post')
                     ->join('users','post.author', '=', 'users.id')
                     ->where('post.kategori_id', '=', 3)
+                    ->where('post.is_slider', '=', 0)
                     ->select('post.id', 'users.name as author', 'post.judul')
                     ->orderBy('post.id', 'DESC')
                     ->paginate(5);
+        $eventSlider = DB::table('post')
+                    ->join('users','post.author', '=', 'users.id')
+                    ->where('post.kategori_id', '=', 3)
+                    ->where('post.is_slider', '=', 1)
+                    ->select('post.id', 'users.name as author', 'post.judul')
+                    ->first();
 
         return view('staff.event.index', [
             'event' => $event,
+            'eventSlider' => $eventSlider,
         ]);
     }
 
@@ -53,6 +61,7 @@ class EventController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -62,6 +71,8 @@ class EventController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
         if ($validator->fails()) {
             return redirect()->back()
@@ -78,6 +89,17 @@ class EventController extends Controller
             $event->isi = $request->isi;
             $event->kategori_id = 3;
             $event->author = Auth::id();
+            if ($request->is_slider == 1) {
+                $eventSlider = Post::where([
+                    'is_slider' => 1,
+                    'kategori_id' => 3
+                ])->first();
+                if (!is_null($eventSlider)) {
+                    $eventSlider->is_slider = 0;
+                    $eventSlider->save();
+                }
+            }
+            $event->is_slider = $request->is_slider;
             $eventSave = $event->save();
             if ($eventSave) {
                 $pesan = 'Event '.$request->judul.' berhasil ditambahkan';
@@ -101,7 +123,8 @@ class EventController extends Controller
                     ->where('post.id', '=', $id)
                     ->select(
                         'post.id', 'users.name as author', 'post.judul',
-                        'post.isi', 'post.gambar', 'post.created_at'
+                        'post.isi', 'post.gambar', 'post.created_at',
+                         'post.is_slider'
                     )
                     ->first();
 
@@ -139,6 +162,7 @@ class EventController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -148,6 +172,8 @@ class EventController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
 
             if ($validator->fails()) {
@@ -167,6 +193,17 @@ class EventController extends Controller
                 $event->gambar = $nama_file;
                 $event->judul = $request->judul;
                 $event->isi = $request->isi;
+                 if ($request->is_slider == 1) {
+                    $eventSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 3
+                    ])->first();
+                    if (!is_null($eventSlider)) {
+                        $eventSlider->is_slider = 0;
+                        $eventSlider->save();
+                    }
+                }
+                $event->is_slider = $request->is_slider;
                 $eventSave = $event->save();
                 if ($eventSave) {
                     $pesan = 'Event '.$request->judul.' berhasil diupdate';
@@ -179,11 +216,14 @@ class EventController extends Controller
             $validator = Validator::make($request->all(), [
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
             if ($validator->fails()) {
                 return redirect()->back()
@@ -193,6 +233,17 @@ class EventController extends Controller
                 $event = Post::find($id);
                 $event->judul = $request->judul;
                 $event->isi = $request->isi;
+                 if ($request->is_slider == 1) {
+                    $eventSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 3
+                    ])->first();
+                    if (!is_null($eventSlider)) {
+                        $eventSlider->is_slider = 0;
+                        $eventSlider->save();
+                    }
+                }
+                $event->is_slider = $request->is_slider;
                 $eventSave = $event->save();
                 if ($eventSave) {
                     $pesan = 'Event '.$request->judul.' berhasil diupdate';

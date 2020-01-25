@@ -56,6 +56,7 @@
                     <th class="th-table">No</th>
                     <th class="th-table">Author</th>
                     <th class="th-table">Destinasi</th>
+                    <th class="th-table">Slider</th>
                     <th class="th-table">Action</th>
                   </tr>
                 </thead>
@@ -65,6 +66,7 @@
                         <th scope="row" class="col-md-1">{{ $destinasi->firstItem() + $key }}</th>
                         <td>{{ $m->author }}</td>
                         <td>{{ $m->judul }}</td>
+                        <td><i class="fa fa-times" style="color: red;"></i></td>
                         <td class="col-md-3">
                           <a href="{{ route('destinasi.show', $m->id) }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-eye"></i> View</a>
                           <a href="{{ route('destinasi.edit', $m->id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
@@ -93,6 +95,36 @@
                 </div>
               </div>
               {{-- end pagination --}}
+            </div>
+            <div class="x_content">
+              @if (!is_null($destinasiSlider))
+              <h3>Data destinasi Slider</h3>
+              <table class="table table-hover table-responsive">
+                <thead>
+                  <tr>
+                    <th class="th-table">No</th>
+                    <th class="th-table">Author</th>
+                    <th class="th-table">Destinasi</th>
+                    <th class="th-table">Slider</th>
+                    <th class="th-table">Action</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                      <tr>
+                        <th scope="row" class="col-md-1">1</th>
+                        <td>{{ $destinasiSlider->author }}</td>
+                        <td>{{ $destinasiSlider->judul }}</td>
+                        <td><i class="fa fa-check"></i></td>
+                        <td class="col-md-3">
+                          <a href="{{ route('destinasi.show', $destinasiSlider->id) }}" type="button" class="btn btn-round btn-success btn-sm"><i class="fa fa-eye"></i> View</a>
+                          <a href="{{ route('destinasi.edit', $destinasiSlider->id) }}" type="button" class="btn btn-round btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                          <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$destinasiSlider->id}})" 
+                              data-target="#DeleteModal" class="btn btn-round btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+              @endif
             </div>
             </div>
           </div>
