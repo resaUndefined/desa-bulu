@@ -33,43 +33,39 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Data KK tiap RT</h2>
+            <h2><a href="{{ route('rt.index') }}">Data KK tiap RT</a></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
             </ul>
             <div class="clearfix"></div>
           </div>
-         {{--  @if (count($iurans) > 0)
+          @if (count($rt) > 0)
             <div class="x_content">
-              @for ($i = 0; $i <5 ; $i++)
+              @foreach ($rt as $key => $v)
                 <div class="widget_summary">
-                  <div class="w_left w_25" style="width:35%;">
-                    <span>@if ($tglArr[$i] != '-')
-                      {{ date('d F Y', strtotime($tglArr[$i])) }}
-                      @else
-                      -
-                    @endif</span>
+                  <div class="w_left w_25" style="width:50%;">
+                    <span>{{ $v->nama_rt }} (<strong>{{ $v->ketua_rt }}</strong>)</span>
                   </div>
-                  <div class="w_center w_55" style="width:65%;">
+                  <div class="w_center w_55" style="width:50%;">
                     <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $persenIur[$i] }}%;">
-                          <span>@currency($iurArr[$i])</span>
+                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $v->jml_kk }}%;">
+                          <span>{{ $v->jml_kk }}</span>
                       </div>
                     </div>
                   </div>
                   <div class="clearfix"></div>
                 </div>
-              @endfor
+              @endforeach
             </div>
-          @endif --}}
+          @endif
           
         </div>
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel fixed_height_320">
                   <div class="x_title">
-                    <h2>Data Jumlah Warga Dusun {{ $desa->desa }}</h2>
+                    <h2><a href="{{ route('masyarakat.index') }}">Data Jumlah Warga Dusun {{ $desa->desa }}</a></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
