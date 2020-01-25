@@ -58,6 +58,20 @@
                     </div>
                   </div>
                   <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Slider <span class="required"></span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <select class="form-control" name="is_slider">
+                        <option value="1" @if ($artikel->is_slider == 1)
+                          selected="" 
+                        @endif>Ya</option>
+                        <option value="0" @if ($artikel->is_slider == 0)
+                          selected="" 
+                        @endif>Tidak</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Isi <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">

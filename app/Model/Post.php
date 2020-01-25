@@ -13,6 +13,7 @@ class Post extends Model
         'isi',
         'gambar',
         'author',
+        'is_slider',
     ];
 
     public function kat()

@@ -7,29 +7,25 @@
     <!-- top tiles -->
     <div class="row tile_count">
       <div class="col-md-3 col-sm-3 col-xs-12 tile_stats_count">
-        <span class="count_top"><i class="fa fa-comments-o"></i> Pertemuan Berikutnya</span>
-        {{-- @if (!is_null($nextPertemuan)) --}}
-          {{-- <div class="count">{{ date('d F Y', strtotime($nextPertemuan->tanggal)) }}</div> --}}
-        {{-- <span class="count_bottom"><i class="fa fa-chevron-circle-right"></i> Tempat <strong>{{ $nextPertemuan->tempat }}</strong></span> --}}
-        {{-- @endif --}}
+        <span class="count_top"><i class="fa fa-comments-o"></i> Jumlah Artikel</span>
+          <div class="count">{{ $artikel }} Postingan</div>
+        <span class="count_bottom"><a href="{{ route('artikel.index') }}"><i class="fa fa-chevron-circle-right"></i> Lihat</a></span>
       </div>
-      {{-- @if (!is_null($prevPertemuan))
-        <div class="col-md-3 col-sm-3 col-xs-12 tile_stats_count">
-          <span class="count_top"><i class="fa fa-dollar"></i> Total Iuran</span>
-          <div class="count">@currency($prevPertemuan->total_iuran)</div>
-          <span class="count_bottom"><i class="fa fa-chevron-circle-right"></i> Dari Pertemuan Sebelumnya</span>
+      <div class="col-md-3 col-sm-3 col-xs-12 tile_stats_count">
+        <span class="count_top"><i class="fa fa-comments-o"></i> Jumlah Destinasi</span>
+          <div class="count">{{ $destinasi }} Postingan</div>
+        <span class="count_bottom"><a href="{{ route('destinasi.index') }}"><i class="fa fa-chevron-circle-right"></i> Lihat</a></span>
       </div>
-      @endif --}}
-      {{-- <div class="col-md-4 col-sm-4 col-xs-12 tile_stats_count">
-        <span class="count_top"><i class="fa fa-money"></i> Total KAS</span>
-        <div class="count">@currency($kas->sisa_saldo)</div>
-        <span class="count_bottom"><i class="fa fa-chevron-circle-right"></i> Sampai Saat Ini</span>
+      <div class="col-md-3 col-sm-3 col-xs-12 tile_stats_count">
+        <span class="count_top"><i class="fa fa-comments-o"></i> Jumlah Event</span>
+          <div class="count">{{ $event }} Postingan</div>
+        <span class="count_bottom"><a href="{{ route('event.index') }}"><i class="fa fa-chevron-circle-right"></i> Lihat</a></span>
       </div>
-      <div class="col-md-2 col-sm-2 col-xs-12 tile_stats_count">
-        <span class="count_top"><i class="fa fa-user"></i> User Aktif</span>
-        <div class="count">{{ $users }}</div>
-        <span class="count_bottom"><i class="fa fa-chevron-circle-right"></i> Saat Ini</span>
-      </div> --}}
+      <div class="col-md-3 col-sm-3 col-xs-12 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Kepala Dukuh</span>
+        <div class="count">{{ $desa->kepala_dukuh }}</div>
+        <span class="count_bottom"><a href="{{ route('dusun.index') }}"><i class="fa fa-chevron-circle-right"></i> Lihat</a></span>
+      </div>
     </div>
     <!-- /top tiles -->
 
@@ -37,7 +33,7 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Rangkuman 5 Iuran Terakhir</h2>
+            <h2>Data KK tiap RT</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -73,7 +69,7 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel fixed_height_320">
                   <div class="x_title">
-                    <h2>Anggota HUMAMIKU AKTIF</h2>
+                    <h2>Data Jumlah Warga Dusun {{ $desa->desa }}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -89,7 +85,7 @@
                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                           <p class="">Jenis Kelamin</p>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm- col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                           <p class="">Jumlah</p>
                         </div>
                       </th>
@@ -99,21 +95,19 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1Rwp5n5Gm33Ec5nna5f4bprvsyCRX5R9EbdWoHGNvW-okYclk" width="80%">
                       </td>
                       <td>
-                        <table class="tile_info">
+                        <table class="tile_info table-responsive">
                           <tbody>
                             <tr>
                                 <td>
-                                  <p>Laki-Laki </p>
+                                  <p>Laki-Laki</p>
                                 </td>
-                                <td>3</td>
-                                {{-- <td>{{ $laki }}</td> --}}
+                                <td><strong>{{ $laki }}</strong></td>
                             </tr>
                             <tr>
                                 <td>
                                   <p>Perempuan</p>
                                 </td>
-                                <td>4</td>
-                                {{-- <td>{{ $perempuan }}</td> --}}
+                                <td><strong>{{ $perempuan }}</strong></td>
                             </tr>
                         </tbody></table>
                       </td>

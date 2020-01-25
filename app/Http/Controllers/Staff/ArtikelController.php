@@ -21,12 +21,20 @@ class ArtikelController extends Controller
         $artikel = DB::table('post')
                     ->join('users','post.author', '=', 'users.id')
                     ->where('post.kategori_id', '=', 1)
+                    ->where('post.is_slider', '=', 0)
                     ->select('post.id', 'users.name as author', 'post.judul')
                     ->orderBy('post.id', 'DESC')
                     ->paginate(5);
+        $artikelSlider = DB::table('post')
+                    ->join('users','post.author', '=', 'users.id')
+                    ->where('post.kategori_id', '=', 1)
+                    ->where('post.is_slider', '=', 1)
+                    ->select('post.id', 'users.name as author', 'post.judul')
+                    ->first();
 
         return view('staff.artikel.index', [
             'artikel' => $artikel,
+            'artikelSlider' => $artikelSlider,
         ]);
     }
 
@@ -52,6 +60,7 @@ class ArtikelController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -61,6 +70,8 @@ class ArtikelController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
         if ($validator->fails()) {
             return redirect()->back()
@@ -77,6 +88,17 @@ class ArtikelController extends Controller
             $artikel->isi = $request->isi;
             $artikel->kategori_id = 1;
             $artikel->author = Auth::id();
+            if ($request->is_slider == 1) {
+                $artikelSlider = Post::where([
+                    'is_slider' => 1,
+                    'kategori_id' => 1
+                ])->first();
+                if (!is_null($artikelSlider)) {
+                    $artikelSlider->is_slider = 0;
+                    $artikelSlider->save();
+                }
+            }
+            $artikel->is_slider = $request->is_slider;
             $artikelSave = $artikel->save();
             if ($artikelSave) {
                 $pesan = 'Artikel '.$request->judul.' berhasil ditambahkan';
@@ -100,7 +122,8 @@ class ArtikelController extends Controller
                     ->where('post.id', '=', $id)
                     ->select(
                         'post.id', 'users.name as author', 'post.judul',
-                        'post.isi', 'post.gambar', 'post.created_at'
+                        'post.isi', 'post.gambar', 'post.created_at',
+                        'post.is_slider'
                     )
                     ->first();
 
@@ -138,6 +161,7 @@ class ArtikelController extends Controller
                         'gambar' => 'required|image|mimes:jpeg,png,jpg|max:1024',
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'gambar.required' => 'Gambar belum dipilih',
@@ -147,6 +171,8 @@ class ArtikelController extends Controller
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
 
             if ($validator->fails()) {
@@ -166,6 +192,17 @@ class ArtikelController extends Controller
                 $artikel->gambar = $nama_file;
                 $artikel->judul = $request->judul;
                 $artikel->isi = $request->isi;
+                if ($request->is_slider == 1) {
+                    $artikelSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 1
+                    ])->first();
+                    if (!is_null($artikelSlider)) {
+                        $artikelSlider->is_slider = 0;
+                        $artikelSlider->save();
+                    }
+                }
+                $artikel->is_slider = $request->is_slider;
                 $artikelSave = $artikel->save();
                 if ($artikelSave) {
                     $pesan = 'Artikel '.$request->judul.' berhasil diupdate';
@@ -178,11 +215,14 @@ class ArtikelController extends Controller
             $validator = Validator::make($request->all(), [
                         'judul' => 'required|string',
                         'isi' => 'required',
+                        'is_slider' => 'required|boolean',
                     ],
                     [
                         'judul.required' => 'Judul wajib diisi',
                         'judul.string' => 'format penulisan Judul tidak sesuai',
                         'isi.required' => 'Isi wajib diisi',
+                        'is_slider.required' => 'Slider wajib dipilih',
+                        'is_slider.boolean' => 'Nilai slider tidak sesuai',
                     ]);
             if ($validator->fails()) {
                 return redirect()->back()
@@ -192,6 +232,17 @@ class ArtikelController extends Controller
                 $artikel = Post::find($id);
                 $artikel->judul = $request->judul;
                 $artikel->isi = $request->isi;
+                if ($request->is_slider == 1) {
+                    $artikelSlider = Post::where([
+                        'is_slider' => 1,
+                        'kategori_id' => 1
+                    ])->first();
+                    if (!is_null($artikelSlider)) {
+                        $artikelSlider->is_slider = 0;
+                        $artikelSlider->save();
+                    }
+                }
+                $artikel->is_slider = $request->is_slider;
                 $artikelSave = $artikel->save();
                 if ($artikelSave) {
                     $pesan = 'Artikel '.$request->judul.' berhasil diupdate';
