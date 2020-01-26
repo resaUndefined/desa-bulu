@@ -23,10 +23,10 @@
 							<li><a href="#">Desa 3</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Destinations</a></li>
-					<li><a href="#">Events</a></li>
-					<li><a href="#">Pojok Bulu</a></li>
-					<li><a href="#">Galery</a></li>
+					<li><a href="{{ route('client.destinasi') }}">Destinations</a></li>
+					<li><a href="{{ route('client.event') }}">Events</a></li>
+					<li><a href="{{ route('client.artikel') }}">Pojok Bulu</a></li>
+					<li><a href="{{ route('client.galeri') }}">Galery</a></li>
 					<li><a href="#cariPost" class="btn btn-success"><i class="fas fa-search"></i> Search</a></li>
 					@if (Auth::check())
 						<li><a href="{{ route('home') }}"><i class="fas fa-user"></i> Dashboard</a></li>
@@ -129,30 +129,5 @@
   </div>
 
 	</body>
-	<script>
- $(document).ready(function() {
-  $('.btn[href^="#"]').click(function(e){
-    e.preventDefault();
-    var href = $(this).attr('href');
-    $(href).modal('toggle');
-  });
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
- var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
-}
-    </script>
-    <!-- Latest compiled and minified JavaScript -->
+@yield('slider')
 </html>

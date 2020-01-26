@@ -97,14 +97,14 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Anggota">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <a data-toggle="tooltip" data-placement="top" title="Artikel" href="{{ route('artikel.index') }}">
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Kas HUMAMIKU">
-                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+              <a data-toggle="tooltip" data-placement="top" title="Destinasi" href="{{ route('destinasi.index') }}">
+                <span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Notulen">
-                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+              <a data-toggle="tooltip" data-placement="top" title="Event" href="{{ route('event.index') }}">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>

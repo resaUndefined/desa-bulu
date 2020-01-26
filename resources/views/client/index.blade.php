@@ -128,7 +128,7 @@
 						@foreach ($artikel as $a)
 							<div class="col-12 col-12-mobile">
 								<article style="height: 50%;margin-bottom: -30px;">
-									<a href="#" class="image featured"><img style="width: 80%;" src="{{ url('/images/'.$a->gambar) }}" alt="" /><p style="font-size: 14px;font-family: unset;">{{ $a->judul }}</p></a>
+									<a href="#" class="image featured"><img style="width: 80%;" src="{{ url('/images/'.$a->gambar) }}" alt="" /><p style="font-size: 14px;font-family: unset;font-weight: bold;">{{ $a->judul }}</p></a>
 								</article>
 							</div>
 						@endforeach
@@ -162,6 +162,32 @@
 				@endif
 			</div>
 		</section>
-
 	</div>
+@endsection
+@section('slider')
+<script>
+ $(document).ready(function() {
+  $('.btn[href^="#"]').click(function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    $(href).modal('toggle');
+  });
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
+ var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+    </script>
 @endsection
