@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Kategori;
 use App\Model\Post;
 use App\Model\Galeri;
 use DB;
@@ -95,6 +96,48 @@ class ClientController extends Controller
 
     	return view('client.galeri', [
     		'galeri' => $galeri,
+    	]);
+    }
+
+
+    public function detail($id)
+    {
+    	$data = DB::table('post')
+    			->join('kategori', 'post.kategori_id', '=', 'kategori.id')
+    					->join('users', 'post.author', '=', 'users.id')
+    					->where('post.id', $id)
+    					->select(
+    						'post.id', 'post.judul', 'post.created_at as tgl',
+    						'kategori.nama_kategori as kategori', 'post.isi', 
+    						'users.name as author', 'post.gambar',
+    						'post.kategori_id'
+    					)
+    					->first();
+    	$relatedData = DB::table('post')
+    					->join('kategori', 'post.kategori_id', '=', 'kategori.id')
+    					->join('users', 'post.author', '=', 'users.id')
+    					->where('post.kategori_id', $data->kategori_id)
+    					->where('post.id', '!=', $data->id)
+    					->select(
+    						'post.id', 'post.judul', 'post.created_at as tgl', 
+    						'users.name as author', 'post.gambar'
+    					)
+    					->orderBy('post.id', 'DESC')
+    					->take(3)
+    					->get();
+    	$rute = null;
+    	if ($data->kategori_id == 1) {
+    		$rute = '/artikel';
+    	} elseif ($data->kategori_id == 2) {
+    		$rute = '/destinasi';
+    	}else{
+    		$rute = '/event';
+    	}
+    	
+    	return view('client.detail', [
+    		'data' => $data,
+    		'relatedData' => $relatedData,
+    		'rute' => $rute,
     	]);
     }
 }

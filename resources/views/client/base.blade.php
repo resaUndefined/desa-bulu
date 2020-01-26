@@ -77,6 +77,7 @@
 	<script src="{{ URL::asset('client/js/breakpoints.min.js') }}"></script>
 	<script src="{{ URL::asset('client/js/util.js') }}"></script>
 	<script src="{{ URL::asset('client/js/main.js') }}"></script>
+	<script async src="https://static.addtoany.com/menu/page.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<div class="modal fade" id="cariPost" role="dialog">
     <div class="modal-dialog">
@@ -127,7 +128,16 @@
       
     </div>
   </div>
-
-	</body>
+</body>
+<script>
+ $(document).ready(function() {
+  $('.btn[href^="#"]').click(function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    $(href).modal('toggle');
+  });
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 @yield('slider')
 </html>

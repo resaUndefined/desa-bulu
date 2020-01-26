@@ -1,6 +1,6 @@
 @extends('client.base')
 
-@section('title', 'Dusun Bulu')
+@section('title', 'Destinasi')
 
 @section('content')
 <div id="page-wrapper">
@@ -15,8 +15,8 @@
 						<div class="row">
 							@foreach ($destinasi as $e)
 								<article class="col-4 col-12-mobile special">
-									<a href="#" class="image featured"><img src="{{ url('/images/'.$e->gambar) }}" alt="" /></a>
-										<h3 style="font-family: unset;margin-top: -25px;margin-bottom: 10px;"><a href="#">{{ $e->judul }}</a></h3>
+									<a href="{{ route('client.detail', $e->id) }}" class="image featured"><img src="{{ url('/images/'.$e->gambar) }}" alt="" /></a>
+										<h3 style="font-family: unset;margin-top: -25px;margin-bottom: 10px;"><a href="{{ route('client.detail', $e->id) }}">{{ $e->judul }}</a></h3>
 								</article>
 							@endforeach
 						</div>

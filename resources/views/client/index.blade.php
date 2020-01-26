@@ -8,7 +8,7 @@
 		@if (count($slider) > 0)
 			@foreach ($slider as $s)
 				<div class="mySlides fade">
-				  	<a href="#"><img src="{{ url('/images/'.$s->gambar) }}" style="width:100%"></a>
+				  	<a href="{{ route('client.detail', $s->id) }}"><img src="{{ url('/images/'.$s->gambar) }}" style="width:100%"></a>
 				  	<div class="text"><h2 style="color: #fff;font-weight: bold;text-align: center;font-family: unset;vertical-align: middle;">{{ $s->judul }}</h2></div>
 				</div>
 			@endforeach
@@ -39,8 +39,8 @@
 					@foreach ($destinasi as $d)
 						<div class="col-md-4">
 							<div>
-								<a href="#" ><img src="{{ url('/images/'.$d->gambar) }}" style="width: 100%;" /></a>
-								<a href="#" ><p style="text-align: center; font-size: 15px;">{{ $d->judul }}</p></a>
+								<a href="{{ route('client.detail', $d->id) }}" ><img src="{{ url('/images/'.$d->gambar) }}" style="width: 100%;" /></a>
+								<a href="{{ route('client.detail', $d->id) }}" ><p style="text-align: center; font-size: 15px;">{{ $d->judul }}</p></a>
 							</div>
 						</div>
 					@endforeach
@@ -62,8 +62,8 @@
 					@foreach ($event as $e)
 						<div class="col-md-4">
 							<div>
-								<a href="#" ><img src="{{ url('/images/'.$e->gambar) }}" style="width: 100%;" /></a>
-								<a href="#" ><p style="text-align: center; font-size: 15px;">{{ $e->judul }}</p></a>
+								<a href="{{ route('client.detail', $e->id) }}" ><img src="{{ url('/images/'.$e->gambar) }}" style="width: 100%;" /></a>
+								<a href="{{ route('client.detail', $e->id) }}" ><p style="text-align: center; font-size: 15px;">{{ $e->judul }}</p></a>
 							</div>
 						</div>
 					@endforeach
@@ -121,14 +121,14 @@
 				@if (!is_null($artikelNew))
 					<div class="col-9 col-12-mobile special">
 						<article>
-						<a href="#" class="image featured"><img src="{{ url('/images/'.$artikelNew->gambar) }}" alt="" /><h3 style="font-family: unset;">{{ $artikelNew->judul }}</h3></a>
+						<a href="{{ route('client.detail', $artikelNew->id) }}" class="image featured"><img src="{{ url('/images/'.$artikelNew->gambar) }}" alt="" /><h3 style="font-family: unset;">{{ $artikelNew->judul }}</h3></a>
 						</article>
 					</div>
 					<div class="col-3 col-12-mobile special">
 						@foreach ($artikel as $a)
 							<div class="col-12 col-12-mobile">
 								<article style="height: 50%;margin-bottom: -30px;">
-									<a href="#" class="image featured"><img style="width: 80%;" src="{{ url('/images/'.$a->gambar) }}" alt="" /><p style="font-size: 14px;font-family: unset;font-weight: bold;">{{ $a->judul }}</p></a>
+									<a href="{{ route('client.detail', $a->id) }}" class="image featured"><img style="width: 80%;" src="{{ url('/images/'.$a->gambar) }}" alt="" /><p style="font-size: 14px;font-family: unset;font-weight: bold;">{{ $a->judul }}</p></a>
 								</article>
 							</div>
 						@endforeach
@@ -138,24 +138,24 @@
 						<article>
 						<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /><h3 style="font-family: cursive;">Artikel Hot nih</h3></a>
 						<p style="margin-top:-30px;font-size: 14px;font-family: cursive;">
-							Mantap jiwa nih lagi ada artikel mantap jiwa nih wkwkwk
+							Default Newest Artikel
 						</p>
 					</article>
 					</div>
 					<div class="col-3 col-12-mobile special">
 						<div class="col-12 col-12-mobile">
 							<article style="height: 50%;margin-bottom: -30px;">
-								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Artikel bagus</p></a>
+								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Default new Artikel</p></a>
 							</article>
 						</div>
 						<div class="col-12 col-12-mobile">
 							<article style="height: 50%;margin-bottom: -30px;">
-								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Artikel keren</p></a>
+								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Default new Artikel</p></a>
 							</article>
 						</div>
 						<div class="col-12 col-12-mobile">
 							<article style="height: 50%;margin-bottom: -30px;">
-								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Artikel trending</p></a>
+								<a href="#" class="image featured"><img style="width: 80%;" src="images/pic08.jpg" alt="" /><p style="font-size: 14px;font-family: cursive;">Default new Artikel</p></a>
 							</article>
 						</div>
 					</div>
@@ -166,28 +166,21 @@
 @endsection
 @section('slider')
 <script>
- $(document).ready(function() {
-  $('.btn[href^="#"]').click(function(e){
-    e.preventDefault();
-    var href = $(this).attr('href');
-    $(href).modal('toggle');
-  });
-  $('[data-toggle="tooltip"]').tooltip();
-});
+ 	var slideIndex = 0;
+	showSlides();
 
- var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
-}
-    </script>
+	function showSlides() {
+	  	var i;
+	  	var slides = document.getElementsByClassName("mySlides");
+	  	for (i = 0; i < slides.length; i++) {
+	    	slides[i].style.display = "none";
+	  	}
+	  	slideIndex++;
+	  	if (slideIndex > slides.length) {
+	  		slideIndex = 1
+	  	}
+	  	slides[slideIndex-1].style.display = "block";
+	  	setTimeout(showSlides, 3000);
+	}
+</script>
 @endsection
