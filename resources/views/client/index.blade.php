@@ -105,7 +105,7 @@
 	<div class="wrapper" style="margin-top: 10px;">
 
 		<article id="main" class="container special" style="margin-bottom: -50px;text-align: center;">
-			<h3 style="padding-top: -20px;padding-bottom: 20px;font-family: unset;text-align: left;font-weight: bold; ">Lokasi Desa Bulu</h3>
+			<h3 style="padding-top: -20px;padding-bottom: 20px;font-family: unset;text-align: left;font-weight: bold; ">Lokasi Dusun Bulu</h3>
 			<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=Bulu%2C%20Bejiharjo%2C%20Karangmojo%2C%20Gunung%20Kidul%2C%20Yogyakarta%2055891%2C%20Indonesia&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div><style>.mapouter{position:relative;text-align:right;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;}</style></div>
 		</article>
 

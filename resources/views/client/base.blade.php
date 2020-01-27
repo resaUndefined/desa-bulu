@@ -18,9 +18,10 @@
 					<li>
 						<a href="#">About</a>
 						<ul>
-							<li><a href="#">Desa 1</a></li>
-							<li><a href="#">Desa 2</a></li>
-							<li><a href="#">Desa 3</a></li>
+							<li><a href="{{ route('client.dusun') }}">Dusun Bulu</a></li>
+							<li><a href="{{ route('client.data-dusun') }}">Data Dusun</a></li>
+							<li><a href="{{ route('client.organisasi') }}">Data Pejabat dan Karang Taruna</a></li>
+							<li><a href="{{ route('client.kampung-kb') }}">Kampung KB</a></li>
 						</ul>
 					</li>
 					<li><a href="{{ route('client.destinasi') }}">Destinations</a></li>
@@ -47,20 +48,18 @@
 								<!-- Contact -->
 									<section class="contact">
 										<header>
-											<h3>Desa Bulu</h3>
+											<h3>Dusun Bulu</h3>
 										</header>
 										<p>Tertarik berkunjung kesana ?</p>
 										<ul class="icons">
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="https://instagram.com/pesona_tapakjaran?igshid=134wxnti5m5e0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 										</ul>
 									</section>
 
 								<!-- Copyright -->
 									<div class="copyright">
 										<ul class="menu">
-											<li>Develop By : <a href="http://html5up.net">KKN Desa Bulu</a></li>
+											<li>Develop By : KKN Dusun Bulu</li>
 										</ul>
 									</div>
 							</div>
@@ -89,8 +88,8 @@
           <h4 class="modal-title">Cari Postingan</h4>
         </div>
         <div class="modal-body">
-        	<form  method="post">
-        		<!-- {{ csrf_field() }} -->
+        	<form  method="post" action="{{ route('client.search') }}">
+        		{{ csrf_field() }}
 		       	<div class="row">
 		       		<div class="form-group">
 			     	</div>
@@ -98,16 +97,17 @@
 		       	<div class="row">
 		       		<div class="form-group">
 			      		<label>Masukkan Keyword</label>
-    						<input type="text" class="form-control" id="pencarianPost" placeholder="Pencarian">
+    						<input type="text" class="form-control" id="keyword" name="keyword" placeholder="Pencarian" required="">
 			     	</div>
 		       	</div>
 		       	<div class="row">
 		       		<div class="form-group">
 			      		<label>Kategori Pencarian</label>
-			         	<select class="form-control" required="" name="level">
-			            	<option value="1">- Pilih Level -</option>
-			            	<option value="2">- Pilih Level -</option>
-			            	<option value="3">- Pilih Level -</option>
+			         	<select class="form-control" required="" name="kategori">
+			            	<option value="">- Pilih Kategori -</option>
+			            	<option value="1">Artikel</option>
+			            	<option value="2">Destinasi</option>
+			            	<option value="3">Event</option>
 			         	</select>
 			     	</div>
 		       	</div>

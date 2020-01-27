@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 use App\Model\Kategori;
 use App\Model\Post;
 use App\Model\Galeri;
+use App\Model\Batasdesa;
+use App\Model\Rt;
+use App\Model\Masyarakat;
+use App\Model\Desa;
+use App\Model\Karangtaruna;
+use App\Model\Detailkarang;
+use App\Model\Fasilitas;
+use App\Model\Kegiatan;
 use DB;
 use Illuminate\Support\Str;
+use Validator;
 
 
 class ClientController extends Controller
@@ -138,6 +147,117 @@ class ClientController extends Controller
     		'data' => $data,
     		'relatedData' => $relatedData,
     		'rute' => $rute,
+    	]);
+    }
+
+
+    public function search(Request $request)
+    {
+    	$validator = Validator::make($request->all(), [
+                        'keyword' => 'required|string',
+                        'kategori' => 'required|exists:kategori,id',
+                    ],
+                    [
+                        'keyword.required' => 'keyword harus diisi',
+                        'keyword.string' => 'format penulisan keyword tidak sesuai',
+                        'kategori.required' => 'kategori belum dipilih',
+                        'kategori.exists' => 'kategori tidak ditemukan',
+                    ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+        	$resultSearch = Post::where('kategori_id', $request->kategori)
+        							->where('judul', 'like', '%'.$request->keyword.'%')
+        							->get();
+	        $nama = null;
+	        if ($request->kategori == 1) {
+	        	$nama = 'Artikel';
+	        } elseif ($request->kategori == 2) {
+	        	$nama = 'Destinasi';
+	        } else {
+	        	$nama = 'Event';
+	        }
+        
+        	return view('client.hasil', [
+        		'resultSearch' => $resultSearch,
+        		'nama' => $nama,
+        	]);
+        }
+    }
+
+
+    public function dusun()
+    {
+    	$fasilitas = Fasilitas::all();
+    	$kegiatan = Kegiatan::all();
+    	$rt = Rt::count();
+    	$rtAwal = Rt::first();
+    	$rtAkhir = Rt::orderBy('id', 'DESC')->first();
+    	$batasDesa = Batasdesa::all();
+    	$dusun = Desa::first();
+
+    	return view('client.dusun', [
+    		'dusun' => $dusun,
+    		'fasilitas' => $fasilitas,
+    		'kegiatan' => $kegiatan,
+    		'rt' => $rt,
+    		'rtAkhir' => $rtAkhir,
+    		'rtAwal' => $rtAwal,
+    		'batasDesa' => $batasDesa,
+    	]);
+    }
+
+
+    public function data_dusun()
+    {
+    	$dusun = Desa::first();
+    	$masyarakat = Masyarakat::all();
+    	$rt = Rt::all();
+    	$jumKK = Rt::sum('jml_kk');
+    	$jumLaki = (int)Masyarakat::sum('laki');
+    	$jumPerempuan = (int)Masyarakat::sum('perempuan');
+    	$total = $jumLaki + $jumPerempuan;
+
+    	return view('client.data_dusun', [
+    		'dusun' => $dusun,
+    		'masyarakat' => $masyarakat,
+    		'rt' => $rt,
+    		'jumKK' => $jumKK,
+    		'jumLaki' => $jumLaki,
+    		'jumPerempuan' => $jumPerempuan,
+    		'total' => $total,
+    	]);
+    }
+
+
+    public function organisasi()
+    {
+    	$dusun = Desa::first();
+    	$rt = Rt::all();
+    	$karangTaruna = Karangtaruna::all();
+    	$kartaBule = Detailkarang::where('karangtaruna_id',1)->get();
+    	$bukid = Detailkarang::where('karangtaruna_id',2)->get();
+    	$rembulan = Detailkarang::where('karangtaruna_id',3)->get();
+
+    	return view('client.organisasi', [
+    		'dusun' => $dusun,
+    		'rt' => $rt,
+    		'karangTaruna' => $karangTaruna,
+    		'kartaBule' => $kartaBule,
+    		'bukid' => $bukid,
+    		'rembulan' => $rembulan,
+    	]);
+    }
+
+
+    public function kampung_kb()
+    {
+    	$dusun = Desa::first();
+
+    	return view('client.kampung-kb', [
+    		'dusun' => $dusun,
     	]);
     }
 }
